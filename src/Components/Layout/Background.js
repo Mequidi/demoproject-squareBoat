@@ -1,5 +1,5 @@
-const Background = () =>{
-    return <div className="background-overlay"></div>
+const Background = (props) =>{
+    return <div style={props.style} className="background-overlay"></div>
 }
 
 export default Background;

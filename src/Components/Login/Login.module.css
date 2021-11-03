@@ -1,0 +1,46 @@
+form{
+    width: 100%;
+    position: relative;
+}
+.heading{
+    font-size: 22px;
+    color: #303F60;
+    margin-bottom: 23px;
+}
+.forgot-password{
+    color: #43AFFF;
+    font-size: 14px;
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    top: 32%;
+    right: 0rem;
+}
+.login-btn{
+    margin:2rem auto;
+    height: 46px;
+    width: 150px;
+    font-size: 1rem;
+    color: white;
+    background-color: rgba(67, 175, 255, 1);
+    border: 1px solid rgba(67, 175, 255, 1);
+    border-radius: 5px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+.login-btn:hover{
+    border-radius: 0;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(67, 175, 255, 0.8);
+}
+.failure-message{
+    color: #FF0000;
+    size: 12px;
+    text-align: end;
+}
+.create-acc-txt{
+    text-align: center;
+    font-size: 16px;
+    color:#303F60
+}

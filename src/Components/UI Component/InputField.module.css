@@ -1,0 +1,18 @@
+.input-field{
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.8rem;
+  border: 1px solid#43AFFF;
+  margin-top: 0.5rem;
+  background-color: #E8E8E833;
+}
+.input{
+    margin: 1rem 0;
+}
+label{
+    color: #303F60;
+    font-size: 14px;
+}
+.failure-input{
+  border: 1px solid #FF333380!important;
+}

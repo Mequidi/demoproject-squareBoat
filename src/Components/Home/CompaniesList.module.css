@@ -1,0 +1,23 @@
+.company-list-container{
+    margin: 75px 0 67px 0;
+    width: 100%;
+}
+.company-list-container h2{
+    text-transform: capitalize;
+    color: #303F60;
+}
+.logo-list{
+    list-style:none;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-item{
+    width: 9vw;
+    margin-right: 4vw;
+}
+.list-item img{
+    width: 100%;
+}

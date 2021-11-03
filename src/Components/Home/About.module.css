@@ -1,0 +1,35 @@
+.about{
+    margin-top: 122px; 
+}
+.heading{
+    font-size:1.5rem;
+    color: #303F60;
+    text-transform: capitalize;
+}
+.card-list{
+    margin-top: 40px;
+    text-decoration: none;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item{
+    max-width: 340px;
+    height: 190px;
+    background-color: white;
+    padding: 24px 20px;
+}
+.list-item h2{
+    display: block;
+    color: #43AFFF;
+    text-transform: capitalize;
+}
+.description{
+    margin-top: 2rem;
+    font-size: 14px;
+    color: #303F60;
+    display: block;
+    margin-bottom: 24px;
+}
