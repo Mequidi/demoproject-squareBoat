@@ -1,0 +1,109 @@
+.job-applicant-card{
+    position: absolute;
+    left: 30vw;
+    top: -5vh;
+    width: 650px;
+    height: 600px;
+    z-index: 20;
+}
+.overlay{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.heading-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(77, 97, 142, 0.5);
+}
+.heading{
+    font-size: 18px;
+}
+.close-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.no-of-applicants{
+    margin: 1rem 0 4px 0;
+}
+.grey-background{
+    background-color: rgba(169, 175, 188, 0.2);
+    border-radius: 10px;
+    width: 100%;
+    height: 87%;
+    padding: 1rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.center-alignment-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center-alignment-container div{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+.center-alignment-container h2{
+    color: rgba(48, 63, 96, 0.8);
+    font-weight: normal;
+}
+.applicants-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+    column-gap: 2rem;
+    row-gap: 2rem;
+}
+.applicants-list li{
+    background-color: white;
+    padding: 0.5rem;
+    border: 1px solid #303F6080;
+    border-radius: 5px;
+}
+.basic-info-container{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+.basic-info-container .logo{
+    display: flex;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #D9EFFF;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+}
+.name{
+    font-size: 15px;
+    color:#303F60;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+.email{
+    color: rgba(48, 63, 96, 0.8);
+}
+.skills-txt{
+    font-weight: bold;
+}
+.skill{
+    color: rgba(48, 63, 96, 0.8);
+}

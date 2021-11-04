@@ -46,6 +46,7 @@
     color: #303F60;
     border:1px solid#43AFFF33;
     border-radius: 5px;
+    cursor: pointer;
 }
 .no-post{
     width: 100%;

@@ -2,14 +2,13 @@ import Card from "../UI Component/Card";
 import { useState } from "react";
 import InputField from "../UI Component/InputField";
 import styles from "./Login.module.css"
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { login } from "../../Utilites/Api";
 
-const Login = () =>{
+const Login = (props) =>{
 
     const [inputValue, setInputValue] = useState({email :"", password :""});
-    const [isInputValid, setIsInputValid] = useState(true); 
-
+    const history = useHistory();
     
     const emailChangeHandler = (event) =>{
         const { value } = event.target;
@@ -28,9 +27,12 @@ const Login = () =>{
 
     const submitHandler = (event) =>{
         event.preventDefault();
-        console.log(inputValue);
         login(inputValue);
+        props.onLogin();
         setInputValue({email :"", password :""})
+        console.log(props.isLoggedIn)
+        // if(props.isLoggedIn)
+            history.push('/AvailableJobs')
     }
 
     return <Card style={{height: "430px"}}>
@@ -53,8 +55,7 @@ const Login = () =>{
                 label="Password"
                 onChange={passwordChangeHandler}
             />
-            {!isInputValid  && <p className={styles["failure-message"]}>Incorrect email address or password.</p>}
-            {/* <Link style={{textDecoration:"none"}} to="/AvailableJobs"><button type="submit" className={styles["login-btn"]}>Login</button></Link> */}
+            {/* {!isInputValid  && <p className={styles["failure-message"]}>Incorrect email address or password.</p>} */}
             <button type="submit" className={styles["login-btn"]}>Login</button>
         </form>
         <div className={styles["create-acc-txt"]}>

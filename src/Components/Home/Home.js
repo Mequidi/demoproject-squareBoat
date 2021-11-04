@@ -2,9 +2,9 @@ import About from "./About";
 import Banner from "./Banner";
 import CompaniesList from "./CompaniesList";
 
-const Home = () =>{
+const Home = (props) =>{
     return <section>
-        <Banner/>
+        <Banner isLoggedIn={props.isLoggedIn}/>
         <About/>
         <CompaniesList/>
     </section>

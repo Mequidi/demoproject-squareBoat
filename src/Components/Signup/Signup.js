@@ -2,20 +2,24 @@ import Card from "../UI Component/Card"
 import styles from "./Signup.module.css"
 import InputField from "../UI Component/InputField"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { register } from "../../Utilites/Api"
 
-const Signup = () =>{
-    
-    const [inputValue,setInputValue] = useState({name:"",email:"",password:"",confirmPassword:"",skills:""});
+const INITAL_VALUE = {name:"",email:"",password:"",confirmPassword:"",skills:""}
+
+const Signup = (props) =>{
+    const history = useHistory()
+    const [inputValue,setInputValue] = useState(INITAL_VALUE);
     const [ isCandidate,setIsCandidate] = useState(false)
-    console.log(localStorage.getItem("userData"));
-    const submitHandler =(event)=>{
+
+    const submitHandler = (event)=>{
         event.preventDefault();
-        console.log(inputValue);
         const finalData = {...inputValue,userRole:isCandidate?1:0}
         register(finalData);
-        setInputValue({name:"",email:"",password:"",confirmPassword:"",skills:""})
+        props.onLogin();
+        setInputValue(INITAL_VALUE);
+        if(props.isLoggedIn)
+            history.push('/AvailableJobs')
     }
     const nameChangeHandler = (event)=>{
         const { value } = event.target;

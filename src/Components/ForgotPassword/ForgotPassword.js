@@ -17,7 +17,6 @@ const ForgotPassword = ()=>{
     const submitHandler = (event) =>{
         event.preventDefault();
         getToken(inputValue);
-        console.log(email)
         setInputValue("")
         history.push("/ResetPassword");
     }

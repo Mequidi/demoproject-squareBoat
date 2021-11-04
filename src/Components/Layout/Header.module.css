@@ -57,3 +57,22 @@ header{
     top: 100%;
     left: 70px;
 }
+
+.after-btn-container{
+    margin: 0px 70px;
+}
+.post-a-job{
+    background-color: transparent;
+    border: none;
+    margin-right: 2rem;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+.logout{
+    background-color: white;
+    color: #303F60;
+    width: 100px;
+    text-align: left;
+    padding: 0.5rem;
+}

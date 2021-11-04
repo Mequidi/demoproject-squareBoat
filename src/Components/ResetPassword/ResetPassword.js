@@ -3,9 +3,11 @@ import { changePassword } from "../../Utilites/Api"
 import Card from "../UI Component/Card"
 import InputField from "../UI Component/InputField"
 import styles from "./ResetPassword.module.css"
+import { useHistory } from "react-router-dom"
 
 const ResetPassword = () =>{
 
+    const history = useHistory();
     const [inputValue, setInputValue ] = useState({newPassword:"",confirmNewPassword:""})
 
     const newPasswordChangeHandler = (event) =>{
@@ -27,9 +29,10 @@ const ResetPassword = () =>{
     const submitHandler = (event) =>{
         event.preventDefault();
         console.log(inputValue)
-        let finalData = {password:inputValue.newPassword,confirmPassword:inputValue.confirmNewPassword,token:JSON.parse(localStorage.getItem("userData")).token}
-        changePassword(finalData)
+        let finalData = {password:inputValue.newPassword,confirmPassword:inputValue.confirmNewPassword,token:localStorage.getItem("jwt")}
+        changePassword(finalData);
         setInputValue({newPassword:"",confirmNewPassword:""})
+        history.push("/Login")
     }
 
     return <Card>
