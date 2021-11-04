@@ -3,14 +3,19 @@ import styles from "./Signup.module.css"
 import InputField from "../UI Component/InputField"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { register } from "../../Utilites/Api"
 
 const Signup = () =>{
     
     const [inputValue,setInputValue] = useState({name:"",email:"",password:"",confirmPassword:"",skills:""});
     const [ isCandidate,setIsCandidate] = useState(false)
+    console.log(localStorage.getItem("userData"));
     const submitHandler =(event)=>{
         event.preventDefault();
-        console.log(inputValue)
+        console.log(inputValue);
+        const finalData = {...inputValue,userRole:isCandidate?1:0}
+        register(finalData);
+        setInputValue({name:"",email:"",password:"",confirmPassword:"",skills:""})
     }
     const nameChangeHandler = (event)=>{
         const { value } = event.target;

@@ -2,17 +2,24 @@ import { useState } from "react/cjs/react.development"
 import styles from "./ForgotPassword.module.css"
 import Card from "../UI Component/Card"
 import InputField from "../UI Component/InputField"
+import { Link } from "react-router-dom"
+import { getToken } from "../../Utilites/Api"
+import { useHistory } from "react-router"
 
 const ForgotPassword = ()=>{
     
+    const history = useHistory();
     const [inputValue, setInputValue ] = useState("")
-    const email = inputValue
+    const email = inputValue;
     const emailChangeHandler = (event) =>{
-        setInputValue(email)
+        setInputValue(event.target.value)
     }
     const submitHandler = (event) =>{
         event.preventDefault();
+        getToken(inputValue);
         console.log(email)
+        setInputValue("")
+        history.push("/ResetPassword");
     }
 
     return <Card>

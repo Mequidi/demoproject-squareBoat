@@ -12,16 +12,22 @@ body{
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
   Helvetica, Arial, "Lucida Grande", sans-serif;
   color:#303F60;
+  overflow-x: hidden;
 }
 h2{
   font-size: 22px;
+}
+p{
+  font-size: 14px;
 }
 
 main{
   width: 75vw;
   margin:auto;
 }
-
+.link{
+  text-decoration:"none";
+}
 .background-overlay{
   height: 365px;
   width: 100vw;
@@ -30,6 +36,15 @@ main{
   position: absolute;
   top: 0;
   left: 0;
+}
+.bg-small{
+  height: 250px!important;
+}
+.bg-medium{
+  height: 365px!important;
+}
+.bg-large{
+  height: 464px!important;
 }
 .blue-txt{
   color: rgba(67, 175, 255, 1)!important;
