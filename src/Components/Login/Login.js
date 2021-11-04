@@ -35,11 +35,11 @@ const Login = (props) =>{
     
     const submitHandler = (event) =>{
         event.preventDefault();
-        login(inputValue);
+        login(inputValue);    
         props.onLogin();
         setInputValue({email :"", password :""})
         console.log(props.isLoggedIn)
-        if(props.isLoggedIn)
+        // if(props.isLoggedIn)
             history.push('/AvailableJobs')
     }
 

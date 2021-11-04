@@ -22,11 +22,11 @@ function App() {
         if(item)
           setIsLoggedIn(true);
         else  
-          setIsLoggedIn(false)
+          setIsLoggedIn(false);
     },[])
 
     const login = () =>{
-      if(localStorage.getItem("jwt"))
+      // if(localStorage.getItem("jwt"))
         setIsLoggedIn(()=>true)
     }
 
