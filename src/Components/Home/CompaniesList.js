@@ -17,7 +17,7 @@ const CompaniesList = () =>{
     return <div className={styles["company-list-container"]}>
         <h2>companies who trust us</h2>
         <ul className={styles["logo-list"]}>
-            {logoImgUrls.map(item=><li className={styles["list-item"]}>
+            {logoImgUrls.map((item,index)=><li key={index+1} className={styles["list-item"]}>
                 <img src={item} alt=""/>
             </li>)}
         </ul>

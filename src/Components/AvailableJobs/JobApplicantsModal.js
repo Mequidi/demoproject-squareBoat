@@ -6,17 +6,17 @@ import { getJobCandidates } from "../../Utilites/Api";
 const JobApplicantsModal = (props) =>{
      
     const [jobApplicants,setJobApplicants] = useState([
-    {id:1,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:2,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:3,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:4,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:5,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:6,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:7,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:8,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:9,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:10,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
-    {id:11,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"}
+    // {id:1,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:2,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:3,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:4,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:5,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:6,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:7,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:8,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:9,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:10,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"},
+    // {id:11,name:"lmoa",skills:["lmao1","lmao2","lmao3"],email:"nikhilsejwal@gmail.com"}
     ])
     useEffect(()=>{
         getJobCandidates({id:props.id,token:localStorage.getItem("jwt")})
@@ -33,9 +33,9 @@ const JobApplicantsModal = (props) =>{
             <h2 className={styles["heading"]}>Applicants for this job</h2>
             <button className={styles["close-btn"]} onClick={props.onClick}>X</button>
         </div>
-        <p className={styles["no-of-applicants"]}>Total {jobApplicants.length} applications</p>
+        <p className={styles["no-of-applicants"]}>Total {jobApplicants?.length} applications</p>
         <div className={styles["grey-background"]}>
-            {jobApplicants.length>0?
+            {jobApplicants?.length>0?
                 <ul className={styles["applicants-list"]}>{jobApplicants.map(item=>{
                     return(<li>
                             <div className={styles["basic-info-container"]}>

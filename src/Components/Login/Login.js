@@ -8,43 +8,53 @@ import { login } from "../../Utilites/Api";
 const Login = (props) =>{
 
     const [inputValue, setInputValue] = useState({email :"", password :""});
+    const [ isValid,setIsValid ] = useState(true) 
+    const [ fieldTouched,setFieldTouched ] = useState({email:false,password:false})
     const history = useHistory();
     
-    const emailChangeHandler = (event) =>{
-        const { value } = event.target;
+    
+    
+    const ChangeHandler = (event) =>{
+        const { name,value } = event.target;
         setInputValue((prev) => ({
             ...prev,
-            email: value,
-          }));
+            [name]: value,
+        }));
     }
-    const passwordChangeHandler = (event) =>{
-        const { value } = event.target;
-        setInputValue((prev) => ({
+    const blurHandler = (event) =>{
+        const { name } = event.target;
+        setFieldTouched((prev) => ({
             ...prev,
-            password: value,
-          }));
+            [name]: true,
+        }));
+        if(inputValue.email && inputValue.password && fieldTouched.email && fieldTouched.password){
+        setIsValid(true)
+        }
+        else    setIsValid(false);
     }
-
+    
     const submitHandler = (event) =>{
         event.preventDefault();
         login(inputValue);
         props.onLogin();
         setInputValue({email :"", password :""})
         console.log(props.isLoggedIn)
-        // if(props.isLoggedIn)
+        if(props.isLoggedIn)
             history.push('/AvailableJobs')
     }
 
     return <Card style={{height: "430px"}}>
         <h2 className={styles["heading"]}>Login</h2>
-        <form onSubmit={submitHandler}>
+        <form autoComplete="off" onSubmit={submitHandler}>
                 <InputField 
                 placeholder="Enter Your Email"
-                name="emailAdd"
+                name="email"
                 type="email"
                 value={inputValue.email}
                 label="Email Address"
-                onChange={emailChangeHandler}
+                onChange={ChangeHandler}
+                onBlur={blurHandler}
+                isValid={isValid}
             />
             <Link style={{textDecoration:"none"}} to="/ForgotPassword"><p className={styles["forgot-password"]}>Forgot your password?</p></Link>
             <InputField 
@@ -53,10 +63,12 @@ const Login = (props) =>{
                 type="password"
                 value={inputValue.password}
                 label="Password"
-                onChange={passwordChangeHandler}
+                onChange={ChangeHandler}
+                onBlur={blurHandler}
+                isValid={isValid}
             />
-            {/* {!isInputValid  && <p className={styles["failure-message"]}>Incorrect email address or password.</p>} */}
-            <button type="submit" className={styles["login-btn"]}>Login</button>
+            {!isValid  && <p className={styles["failure-message"]}>Incorrect email address or password.</p>}
+            <button type="submit" disabled={!isValid} className={styles["login-btn"]}>Login</button>
         </form>
         <div className={styles["create-acc-txt"]}>
             <span>New to MyJobs? </span>

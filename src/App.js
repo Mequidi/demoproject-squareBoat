@@ -9,10 +9,12 @@ import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import { useState,useEffect } from 'react';
 import AvailableJobs from './Components/AvailableJobs/AvailableJobs';
-import { useHistory } from "react-router-dom"
+// import { useHistory } from "react-router-dom"
+import PostJob from './Components/PostJob/PostJob';
+
 function App() {
 
-  const history = useHistory();
+  // const history = useHistory();
   const [isLoggedIn,setIsLoggedIn] = useState(false);
     
     useEffect(()=>{
@@ -24,7 +26,8 @@ function App() {
     },[])
 
     const login = () =>{
-      setIsLoggedIn(()=>true)
+      if(localStorage.getItem("jwt"))
+        setIsLoggedIn(()=>true)
     }
 
     const logout = () =>{
@@ -45,6 +48,7 @@ function App() {
             <Route path="/ForgotPassword" component={ForgotPassword}/>
             <Route path="/ResetPassword" component={ResetPassword}/>
             <Route path="/AvailableJobs" component={AvailableJobs}/>
+            <Route path="/PostJobs" component={PostJob}/>
           </Switch>
         </main>
       </Router>

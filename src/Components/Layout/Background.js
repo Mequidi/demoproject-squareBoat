@@ -2,9 +2,10 @@ import { useState,useEffect } from "react";
 
 const Background = () =>{
 
-    const [ currentURL, setCurrentURL ] = useState(window.location.pathname);
+    const [ currentURL, setCurrentURL ] = useState("");
     useEffect(()=>{
-        setCurrentURL(window.location.pathname)
+        if(currentURL!==window.location.pathname)
+            setCurrentURL(window.location.pathname)
     },[currentURL])
     
     let bgCoverClass="";

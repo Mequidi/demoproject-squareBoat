@@ -8,16 +8,16 @@
     margin-bottom: 60px;
 }
 .job-list{
+    flex-wrap: wrap;
     display: flex;
     list-style: none;
     width: 100%;
     justify-content: flex-start;
-    
 }
 .list-item{
     width: 260px;
     background-color: white;
-    margin-right: 1rem;
+    margin: 0 1rem 1rem 0;
     padding: 1rem;
     border-radius: 5px;
     border: 1px solid white;

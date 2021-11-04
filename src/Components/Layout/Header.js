@@ -12,8 +12,8 @@ const Header = (props) =>{
                 </button>
             </div>;
     const afterLogIn = <div className={classes["after-btn-container"]}>
-            <button className={classes["post-a-job"]}>Post a Job</button>
-            <button className={classes["logout"]} onClick={props.onLogout}>Logout</button>
+            <Link style={style} to="/PostJobs"><button className={classes["post-a-job"]}>Post a Job</button></Link>
+            <Link style={style} onClick={props.onLogout} to="/"><button className={classes["logout"]} >Logout</button></Link>
         </div>
         
 

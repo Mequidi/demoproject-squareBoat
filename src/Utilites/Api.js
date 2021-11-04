@@ -11,7 +11,7 @@ export const register = (data) =>{
     })
     .then(resp=>resp.json())
     .then(response=>{
-        localStorage.setItem(TOKEN_KEY, response.data.token)
+        // localStorage.setItem(TOKEN_KEY, response.data.token)
         console.log(response)
     })
     .catch(err=>console.log("something went wrong",err))
@@ -27,8 +27,9 @@ export const login = (data) =>{
     })
     .then(resp=>resp.json())
     .then(response=>{
-        localStorage.setItem(TOKEN_KEY,response.data.token)
-        console.log(response)
+        localStorage.setItem(TOKEN_KEY,response.data.token);
+        localStorage.setItem("USER_ROLE",response.data.userRole);
+        console.log(response);
     })
     .catch(err=>console.log("something went wrong",err))
 } 
@@ -70,30 +71,34 @@ export const changePassword = (data) =>{
 export const createJob = (data) =>{
     fetch(BASE_URL+"jobs/", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({"title": data.title,
+        "description": data.description,
+        "location": data.location}),
         headers: {
-            "Content-type": "application/json; charset=UTF-8"
+            "Content-type": "application/json; charset=UTF-8",
+            "Authorization": `${data.token}`
         }
     })
     .then(resp=>resp.json())
     .then(response=>{
-        console.log(response.message);
+        console.log(response.success?"success":"failure");
     })
     .catch(err=>console.log(err))
 }
 
 export const getPostedJobs=(data)=>{
+    console.log(data)
     let dataRecieve;
     dataRecieve=fetch(BASE_URL+`/recruiters/jobs`,{
         headers: {
-            "Authorization": `${data}`
+            "Authorization": data
         }
     })
     .then(resp=>resp.json())
     .then(response=>{
         console.log(response.success?"success":"failed");
         console.log(response);
-        let dataRecieved = response.data.data.map(item=>{
+            let dataRecieved = response.data?.data?.map(item=>{
             return {id:item.id,title:item.title,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…",location:item.location}
         })
         return dataRecieved
@@ -111,7 +116,8 @@ export const getJobCandidates=(data)=>{
     .then(resp=>resp.json())
     .then(response=>{
         console.log(response.success?"success":"failed");
-        let dataRecieved = response.data.map(item=>{
+        console.log(response)
+        let dataRecieved = response.data?.map(item=>{
             return {id:item.id,name:item.name,email:item.email,skills:item.skills}
         })
         console.log(dataRecieved)

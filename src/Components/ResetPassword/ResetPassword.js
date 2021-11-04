@@ -38,7 +38,7 @@ const ResetPassword = () =>{
     return <Card>
         <h2>Reset Your Password</h2>
         <p className={styles["txt"]}>Enter your new password below.</p>
-        <form onSubmit={submitHandler}> 
+        <form autoComplete="off" onSubmit={submitHandler}> 
         <InputField 
             placeholder="Enter Your Password"
             name="newPassword"

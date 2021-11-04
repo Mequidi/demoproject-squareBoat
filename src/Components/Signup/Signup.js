@@ -16,46 +16,18 @@ const Signup = (props) =>{
         event.preventDefault();
         const finalData = {...inputValue,userRole:isCandidate?1:0}
         register(finalData);
-        props.onLogin();
+        // props.onLogin();
         setInputValue(INITAL_VALUE);
-        if(props.isLoggedIn)
-            history.push('/AvailableJobs')
+        history.push('/Login')
     }
-    const nameChangeHandler = (event)=>{
-        const { value } = event.target;
+    const changeHandler = (event)=>{
+        const { name,value } = event.target;
         setInputValue((prev) => ({
         ...prev,
-        name: value,
+        [name]: value,
         }));
     }
-    const emailChangeHandler = (event)=>{
-        const { value } = event.target;
-        setInputValue((prev) => ({
-        ...prev,
-        email: value,
-        }));
-    }
-    const passwordChangeHandler = (event)=>{
-        const { value } = event.target;
-        setInputValue((prev) => ({
-        ...prev,
-        password: value,
-        }));
-    }
-    const confirmPasswordChangeHandler = (event)=>{
-        const { value } = event.target;
-        setInputValue((prev) => ({
-        ...prev,
-        confirmPassword: value,
-        }));
-    }
-    const skillsChangeHandler = (event) =>{
-        const { value } = event.target;
-        setInputValue((prev) => ({
-        ...prev,
-        skills: value,
-        }));
-    }
+    
     let recruiterStyle = `${styles["type-btn"]} ${isCandidate?"":styles.active}`;
     let candidateStyle = `${styles["type-btn"]} ${!isCandidate?"":styles.active}`;
 
@@ -70,22 +42,22 @@ const Signup = (props) =>{
                 setIsCandidate(true)
             }} className={candidateStyle}>Candidate</button>
         </div>
-        <form onSubmit={submitHandler}>
+        <form autoComplete="off" onSubmit={submitHandler}>
         <InputField 
                 placeholder="Enter Your Full Name"
-                name="fullname"
+                name="name"
                 type="text"
                 value={inputValue.name}
                 label="Full Name*"
-                onChange={nameChangeHandler}
+                onChange={changeHandler}
             />
            <InputField 
                 placeholder="Enter Your Email"
-                name="emailAdd"
+                name="email"
                 type="email"
                 value={inputValue.email}
                 label="Email Address*"
-                onChange={emailChangeHandler}
+                onChange={changeHandler}
             />
             <div className={styles["half-input"]}>
                 <InputField 
@@ -94,16 +66,16 @@ const Signup = (props) =>{
                 type="password"
                 value={inputValue.password}
                 label="Create Password*"
-                onChange={passwordChangeHandler}
+                onChange={changeHandler}
             />
             <div style={{width:"1rem",flexGrow:"0"}}></div>
             <InputField 
                 placeholder="Enter Your Password"
-                name="password 2"
+                name="confirmPassword"
                 type="password"
                 value={inputValue.confirmPassword}
                 label="Confirm Password"
-                onChange={confirmPasswordChangeHandler}
+                onChange={changeHandler}
             />
             </div>
             {isCandidate && <InputField
@@ -113,7 +85,7 @@ const Signup = (props) =>{
                 type="text"
                 value={inputValue.skills}
                 label="Skills"
-                onChange={skillsChangeHandler}
+                onChange={changeHandler}
             />}
             <button type="submit" className={styles["signup-btn"]}>Signup</button>
         </form>
