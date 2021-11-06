@@ -16,17 +16,27 @@ function App() {
 
   // const history = useHistory();
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [ currentURL, setCurrentURL ] = useState(window.location.pathname);
     
     useEffect(()=>{
-      const item = localStorage.getItem("jwt");
-        if(item)
-          setIsLoggedIn(true);
-        else  
-          setIsLoggedIn(false);
-    },[])
+        if(currentURL!==window.location.pathname)
+        {
+            setCurrentURL(window.location.pathname);
+            console.log("run")
+        }      
+    })
+    console.log(window.location.pathname)
+    console.log(currentURL)
+    
+    // useEffect(()=>{
+    //   const item = localStorage.getItem("jwt");
+    //     if(item)
+    //       setIsLoggedIn(true);
+    //     else  
+    //       setIsLoggedIn(false);
+    // },[])
 
     const login = () =>{
-      // if(localStorage.getItem("jwt"))
         setIsLoggedIn(()=>true)
     }
 
@@ -38,12 +48,14 @@ function App() {
 
   return (
       <Router>
-        <Background/>
+        <Background currentURL={currentURL}/>
         <Header isLoggedIn={isLoggedIn} onLogout={logout}/>
         <main>
           <Switch>
             <Route path="/" exact component={()=><Home isLoggedIn={isLoggedIn}/>}/>
-            <Route path="/Login" component={()=><Login onLogin={login} isLoggedIn={isLoggedIn}/>}/>
+            <Route path="/Login" component={()=><Login 
+            onLogin={login} 
+            isLoggedIn={isLoggedIn}/>}/>
             <Route path="/Signup" component={()=><Signup onLogin={login} isLoggedIn={isLoggedIn}/>}/>
             <Route path="/ForgotPassword" component={ForgotPassword}/>
             <Route path="/ResetPassword" component={ResetPassword}/>

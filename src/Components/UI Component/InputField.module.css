@@ -13,6 +13,9 @@ label{
     color: #303F60;
     font-size: 14px;
 }
-.failure-input{
+.validationError{
   border: 1px solid #FF333380!important;
+}
+.input-mandatory{
+  
 }

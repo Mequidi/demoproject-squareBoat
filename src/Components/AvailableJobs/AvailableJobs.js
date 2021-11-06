@@ -9,7 +9,7 @@ const AvailableJobs = () =>{
     const [ selectedId,setSelectedId ] = useState("");
     const [ jobs,setJobs ] = useState([]);
     useEffect(()=>{
-        getPostedJobs(localStorage.getItem("jwt"))
+        getPostedJobs()
         .then((result)=>{
             console.log(result)
             setJobs(result);

@@ -17,7 +17,7 @@ export const register = (data) =>{
     .catch(err=>console.log("something went wrong",err))
 }
 
-export const login = (data) =>{
+export const login = (data,func)=>{
     fetch(BASE_URL+"auth/login", {
         method: "POST",
         body: JSON.stringify(data),
@@ -29,10 +29,11 @@ export const login = (data) =>{
     .then(response=>{
         localStorage.setItem(TOKEN_KEY,response.data.token);
         localStorage.setItem("USER_ROLE",response.data.userRole);
+        func();
         console.log(response);
     })
     .catch(err=>console.log("something went wrong",err))
-} 
+}
 
 export const getToken = (data) =>{
     fetch(BASE_URL+`auth/resetpassword?email=${data}`)
@@ -86,12 +87,11 @@ export const createJob = (data) =>{
     .catch(err=>console.log(err))
 }
 
-export const getPostedJobs=(data)=>{
-    console.log(data)
+export const getPostedJobs=()=>{
     let dataRecieve;
     dataRecieve=fetch(BASE_URL+`/recruiters/jobs`,{
         headers: {
-            "Authorization": data
+            "Authorization": localStorage.getItem("jwt")
         }
     })
     .then(resp=>resp.json())

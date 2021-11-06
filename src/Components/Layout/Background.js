@@ -1,13 +1,7 @@
-import { useState,useEffect } from "react";
+// import { useState,useEffect } from "react";
 
-const Background = () =>{
+const Background = ({currentURL}) =>{
 
-    const [ currentURL, setCurrentURL ] = useState("");
-    useEffect(()=>{
-        if(currentURL!==window.location.pathname)
-            setCurrentURL(window.location.pathname)
-    },[currentURL])
-    
     let bgCoverClass="";
     switch (currentURL) {
         case "/":
@@ -21,13 +15,12 @@ const Background = () =>{
             bgCoverClass="bg-medium";
             break;
         case "/AvailableJobs":
+        case "/PostJobs":
             bgCoverClass="bg-small";
             break;
         default:
             break;
     }
-    console.log(bgCoverClass)
-
     return <div className={`background-overlay ${bgCoverClass}`}></div>
 }
 

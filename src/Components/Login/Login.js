@@ -1,75 +1,68 @@
 import Card from "../UI Component/Card";
-import { useState } from "react";
 import InputField from "../UI Component/InputField";
 import styles from "./Login.module.css"
 import { Link,useHistory } from "react-router-dom";
 import { login } from "../../Utilites/Api";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 const Login = (props) =>{
-
-    const [inputValue, setInputValue] = useState({email :"", password :""});
-    const [ isValid,setIsValid ] = useState(true) 
-    const [ fieldTouched,setFieldTouched ] = useState({email:false,password:false})
     const history = useHistory();
     
+    const Schema = Yup.object().shape({
+        email: Yup.string()        
+           .email('Invalid email address.')
+           .required("The field is mandatory.").nullable(),
+        password: Yup.string()
+         .required("The field is mandatory."),
+    });
     
-    
-    const ChangeHandler = (event) =>{
-        const { name,value } = event.target;
-        setInputValue((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    }
-    const blurHandler = (event) =>{
-        const { name } = event.target;
-        setFieldTouched((prev) => ({
-            ...prev,
-            [name]: true,
-        }));
-        if(inputValue.email && inputValue.password && fieldTouched.email && fieldTouched.password){
-        setIsValid(true)
-        }
-        else    setIsValid(false);
-    }
-    
-    const submitHandler = (event) =>{
-        event.preventDefault();
-        login(inputValue);    
-        props.onLogin();
-        setInputValue({email :"", password :""})
-        console.log(props.isLoggedIn)
-        // if(props.isLoggedIn)
+    const submitHandler = (values) =>{
+        login(values,()=>{
             history.push('/AvailableJobs')
+            props.onLogin();
+        }); 
     }
 
     return <Card style={{height: "430px"}}>
         <h2 className={styles["heading"]}>Login</h2>
-        <form autoComplete="off" onSubmit={submitHandler}>
-                <InputField 
-                placeholder="Enter Your Email"
-                name="email"
-                type="email"
-                value={inputValue.email}
-                label="Email Address"
-                onChange={ChangeHandler}
-                onBlur={blurHandler}
-                isValid={isValid}
-            />
-            <Link style={{textDecoration:"none"}} to="/ForgotPassword"><p className={styles["forgot-password"]}>Forgot your password?</p></Link>
-            <InputField 
-                placeholder="Enter Your Password"
-                name="password"
-                type="password"
-                value={inputValue.password}
-                label="Password"
-                onChange={ChangeHandler}
-                onBlur={blurHandler}
-                isValid={isValid}
-            />
-            {!isValid  && <p className={styles["failure-message"]}>Incorrect email address or password.</p>}
-            <button type="submit" disabled={!isValid} className={styles["login-btn"]}>Login</button>
-        </form>
+        <Formik 
+						initialValues={{
+							email: "",
+							password: "",
+						}}
+						validationSchema={Schema}
+						onSubmit={(values)=>submitHandler(values)}
+					>
+					{({ values, errors, touched, handleChange, handleBlur }) => (
+						<Form className="signup-form">
+                            <InputField 
+                                placeholder="Enter Your Email"
+                                name="email"
+                                type="email"
+                                value={values.email}
+                                label="Email Address"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                errors={errors.email}
+                                touched={touched.email}
+                            />
+                            <Link style={{textDecoration:"none"}} to="/ForgotPassword"><p className={styles["forgot-password"]}>Forgot your password?</p></Link>
+                            <InputField 
+                                placeholder="Enter Your Password"
+                                name="password"
+                                type="password"
+                                value={values.password}
+                                label="Password"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                errors={errors.password}
+                                touched={touched.password}
+                            />
+                            {/* {!isValid && <p className={styles["failure-message"]}>Incorrect email address or password.</p>} */}
+                            <button type="submit" className={styles["login-btn"]}>Login</button>
+                        </Form>)}
+        </Formik>
         <div className={styles["create-acc-txt"]}>
             <span>New to MyJobs? </span>
             <Link style={{textDecoration:"none"}} to="/Signup"><span className="blue-txt">Create an account</span></Link>
