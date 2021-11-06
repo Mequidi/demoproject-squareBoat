@@ -4,29 +4,31 @@ import InputField from "../UI Component/InputField"
 import { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { register } from "../../Utilites/Api"
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
-const INITAL_VALUE = {name:"",email:"",password:"",confirmPassword:"",skills:""}
-
-const Signup = (props) =>{
+const Signup = () =>{
     const history = useHistory()
-    const [inputValue,setInputValue] = useState(INITAL_VALUE);
     const [ isCandidate,setIsCandidate] = useState(false)
 
-    const submitHandler = (event)=>{
-        event.preventDefault();
-        const finalData = {...inputValue,userRole:isCandidate?1:0}
+    const submitHandler = (values)=>{
+        const finalData = {...values,userRole:isCandidate?1:0}
         register(finalData);
-        // props.onLogin();
-        setInputValue(INITAL_VALUE);
         history.push('/Login')
     }
-    const changeHandler = (event)=>{
-        const { name,value } = event.target;
-        setInputValue((prev) => ({
-        ...prev,
-        [name]: value,
-        }));
-    }
+    const Schema = Yup.object().shape({
+        email: Yup.string()        
+            .email('Invalid email address.')
+           .required("The field is mandatory.").nullable(),
+        password: Yup.string()
+            .required("The field is mandatory."),  
+        name : Yup.string()
+            .required("The field is mandatory."), 
+        confirmPassword : Yup.string()
+            .required("The field is mandatory."), 
+        skills:Yup.string()
+            .required("The field is mandatory."), 
+    });
     
     let recruiterStyle = `${styles["type-btn"]} ${isCandidate?"":styles.active}`;
     let candidateStyle = `${styles["type-btn"]} ${!isCandidate?"":styles.active}`;
@@ -42,53 +44,85 @@ const Signup = (props) =>{
                 setIsCandidate(true)
             }} className={candidateStyle}>Candidate</button>
         </div>
-        <form autoComplete="off" onSubmit={submitHandler}>
-        <InputField 
-                placeholder="Enter Your Full Name"
-                name="name"
-                type="text"
-                value={inputValue.name}
-                label="Full Name*"
-                onChange={changeHandler}
-            />
-           <InputField 
-                placeholder="Enter Your Email"
-                name="email"
-                type="email"
-                value={inputValue.email}
-                label="Email Address*"
-                onChange={changeHandler}
-            />
-            <div className={styles["half-input"]}>
-                <InputField 
-                placeholder="Enter Your password"
-                name="password"
-                type="password"
-                value={inputValue.password}
-                label="Create Password*"
-                onChange={changeHandler}
-            />
-            <div style={{width:"1rem",flexGrow:"0"}}></div>
-            <InputField 
-                placeholder="Enter Your Password"
-                name="confirmPassword"
-                type="password"
-                value={inputValue.confirmPassword}
-                label="Confirm Password"
-                onChange={changeHandler}
-            />
-            </div>
-            {isCandidate && <InputField
-                style={{marginTop:"0"}} 
-                placeholder="Enter comma separated skills"
-                name="skills"
-                type="text"
-                value={inputValue.skills}
-                label="Skills"
-                onChange={changeHandler}
-            />}
-            <button type="submit" className={styles["signup-btn"]}>Signup</button>
-        </form>
+        <Formik 
+						initialValues={{
+							email: "",
+							name: "",
+                            password:"",
+                            confirmPassword:"",
+                            skills:""
+						}}
+						validationSchema={Schema}
+						onSubmit={(values)=>submitHandler(values)}
+					>
+					{({ values, errors, touched, handleChange, handleBlur }) => (
+                        <Form>
+                        <InputField 
+                                placeholder="Enter Your Full Name"
+                                name="name"
+                                type="text"
+                                value={values.name}
+                                label="Full Name*"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                errors={errors.name}
+                                touched={touched.name}
+                                
+                            />
+                           <InputField 
+                                placeholder="Enter Your Email"
+                                name="email"
+                                type="email"
+                                value={values.email}
+                                label="Email Address*"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                errors={errors.email}
+                                touched={touched.email}
+                            />
+                            <div className={styles["half-input"]}>
+                                <InputField 
+                                placeholder="Enter Your password"
+                                name="password"
+                                type="password"
+                                value={values.password}
+                                label="Create Password*"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                errors={errors.password}
+                                touched={touched.password}
+                                isHalfInput={true}
+                            />
+                            <div style={{width:"1rem",flexGrow:"0"}}></div>
+                            <InputField 
+                                placeholder="Enter Your Password"
+                                name="confirmPassword"
+                                type="password"
+                                value={values.confirmPassword}
+                                label="Confirm Password"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                errors={errors.confirmPassword}
+                                touched={touched.confirmPassword}
+                                isHalfInput={true}
+                            />
+                            </div>
+                            {isCandidate && <InputField
+                                style={{marginTop:"0"}} 
+                                placeholder="Enter comma separated skills"
+                                name="skills"
+                                type="text"
+                                value={values.skills}
+                                label="Skills"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                errors={errors.skills}
+                                touched={touched.skills}
+                            />}
+                            <button type="submit" className={styles["signup-btn"]}>Signup</button>
+                        </Form>)}
+                    </Formik>
+        
         <div className={styles["login-txt"]}>
             <span>Have an account? </span>
             <Link style={{textDecoration:"none"}} to="/Login"><span className="blue-txt">Login </span></Link>

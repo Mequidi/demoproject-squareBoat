@@ -1,62 +1,66 @@
-import { useState } from "react/cjs/react.development"
 import { changePassword } from "../../Utilites/Api"
 import Card from "../UI Component/Card"
 import InputField from "../UI Component/InputField"
 import styles from "./ResetPassword.module.css"
 import { useHistory } from "react-router-dom"
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 const ResetPassword = () =>{
 
     const history = useHistory();
-    const [inputValue, setInputValue ] = useState({newPassword:"",confirmNewPassword:""})
 
-    const newPasswordChangeHandler = (event) =>{
-        const {  value } = event.target;
-        setInputValue((prev) => ({
-          ...prev,
-          newPassword: value,
-        }));
-    }
+    const Schema = Yup.object().shape({
+        password: Yup.string()        
+           .required("The field is mandatory.").nullable(),
+           confirmPassword: Yup.string()
+         .required("The field is mandatory."),
+    });
 
-    const confirmNewPasswordChangeHandler = (event) =>{
-        const {  value } = event.target;
-        setInputValue((prev) => ({
-          ...prev,
-          confirmNewPassword: value,
-        }));
-    }
-
-    const submitHandler = (event) =>{
-        event.preventDefault();
-        console.log(inputValue)
-        let finalData = {password:inputValue.newPassword,confirmPassword:inputValue.confirmNewPassword,token:localStorage.getItem("jwt")}
+    const submitHandler = (values) =>{
+        let finalData = {password:values.newPassword,confirmPassword:values.confirmNewPassword,token:localStorage.getItem("jwt")}
         changePassword(finalData);
-        setInputValue({newPassword:"",confirmNewPassword:""})
         history.push("/Login")
     }
 
     return <Card>
         <h2>Reset Your Password</h2>
         <p className={styles["txt"]}>Enter your new password below.</p>
-        <form autoComplete="off" onSubmit={submitHandler}> 
-        <InputField 
-            placeholder="Enter Your Password"
-            name="newPassword"
-            type="password"
-            value={inputValue.newPassword}
-            label="New password"
-            onChange={newPasswordChangeHandler}
-        />
-        <InputField 
-            placeholder="Enter Your Password"
-            name="confirmNewPassword"
-            type="password"
-            value={inputValue.confirmNewPassword}
-            label="Confirm new password"
-            onChange={confirmNewPasswordChangeHandler}
-        />
-        <button className={styles["submit-btn"]} type="submit">Reset</button>
-        </form>
+        <Formik 
+			initialValues={{
+				password: "",
+                confirmPassword :""
+			}}
+			validationSchema={Schema}
+			onSubmit={(values)=>submitHandler(values)}
+		>
+		{({ values, errors, touched, handleChange, handleBlur }) => (
+			<Form>
+            <InputField 
+                placeholder="Enter Your Password"
+                name="password"
+                type="password"
+                value={values.password}
+                label="New password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.password}
+                touched={touched.password}
+            />
+            <InputField 
+                placeholder="Enter Your Password"
+                name="confirmPassword"
+                type="password"
+                value={values.confirmPassword}
+                label="Confirm new password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.password}
+                touched={touched.password}
+            />
+            <button className={styles["submit-btn"]} type="submit">Reset</button>
+        </Form>)}
+        </Formik>
     </Card>
 }
 

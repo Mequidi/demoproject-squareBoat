@@ -35,7 +35,7 @@ const Login = (props) =>{
 						onSubmit={(values)=>submitHandler(values)}
 					>
 					{({ values, errors, touched, handleChange, handleBlur }) => (
-						<Form className="signup-form">
+						<Form>
                             <InputField 
                                 placeholder="Enter Your Email"
                                 name="email"
@@ -59,7 +59,6 @@ const Login = (props) =>{
                                 errors={errors.password}
                                 touched={touched.password}
                             />
-                            {/* {!isValid && <p className={styles["failure-message"]}>Incorrect email address or password.</p>} */}
                             <button type="submit" className={styles["login-btn"]}>Login</button>
                         </Form>)}
         </Formik>

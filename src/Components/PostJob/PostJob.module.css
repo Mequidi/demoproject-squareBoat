@@ -42,3 +42,13 @@
     font-size: 12px;
     color: white;
 }
+.validationError{
+    border: 1px solid #FF333380!important;
+  }
+  .input-mandatory{
+    color: rgba(255, 0, 0, 0.8);
+    font-size: 12px;
+    position: absolute;
+    top: 100%;
+    left: 75%;
+  }

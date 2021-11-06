@@ -35,11 +35,12 @@ export const login = (data,func)=>{
     .catch(err=>console.log("something went wrong",err))
 }
 
-export const getToken = (data) =>{
+export const getToken = (data,func) =>{
     fetch(BASE_URL+`auth/resetpassword?email=${data}`)
     .then(resp=>resp.json())
     .then(response=>{
-        localStorage.setItem(TOKEN_KEY,response.data.token);
+        localStorage.setItem(TOKEN_KEY,response.data?.token);
+        func();
         checkToken(response.data.token);
     })
     .catch(err=>console.log(err))

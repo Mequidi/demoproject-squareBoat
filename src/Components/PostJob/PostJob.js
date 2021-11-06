@@ -5,23 +5,25 @@ import { useState } from 'react';
 import { createJob } from '../../Utilites/Api';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 const PostJob = () =>{
 
-    const [inputValue, setInputValue] = useState({jobTitle :"", description :"", location:""});
-    const history = useHistory()
-    const changeHandler = (event) =>{
-        const { name,value } = event.target;
-        setInputValue((prev) => ({
-            ...prev,
-            [name] : value,
-          })); 
-    }
-    const submitHandler = (event) =>{
-        event.preventDefault();
-        createJob({title:inputValue.jobTitle,description:inputValue.description,location:inputValue.location,token:localStorage.getItem("jwt")});
-        setInputValue({jobTitle :"", description :"", location:""})
-        history.push("/AvailableJobs")
+    const history = useHistory();
+
+    const Schema = Yup.object().shape({
+        title: Yup.string()        
+           .required("The field is mandatory."),
+        description: Yup.string()
+         .required("The field is mandatory."),
+        location: Yup.string()
+         .required("The field is mandatory."),
+    });
+    
+    const submitHandler = (values) =>{
+        createJob({title:values.jobTitle,description:values.description,location:values.location,token:localStorage.getItem("jwt")});
+        history.push("/AvailableJobs");
     }
 
     return <>
@@ -31,14 +33,26 @@ const PostJob = () =>{
             </p>
             <Card>
                 <h2>Post a Job</h2>
-                <form autoComplete="off" onSubmit={submitHandler}>
+                <Formik 
+						initialValues={{
+                            title :"", 
+                            description :"", 
+                            location:""}}
+						validationSchema={Schema}
+						onSubmit={(values)=>submitHandler(values)}
+					>
+					{({ values, errors, touched, handleChange, handleBlur }) => (
+						<Form>
                     <InputField 
                         placeholder="Enter job title"
                         name="jobTitle"
                         type="text"
-                        value={inputValue.jobTitle}
+                        value={values.title}
                         label="Job title*"
-                        onChange={changeHandler}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        errors={errors.email}
+                        touched={touched.email}
                     />
                     <div className={styles["input"]}>
                         <label>{"Description*"}</label>
@@ -46,20 +60,27 @@ const PostJob = () =>{
                         <textarea 
                             placeholder="Enter job description" 
                             name="description" 
-                            value={inputValue.description}
-                            className={styles["input-field"]}
-                            onChange={changeHandler}/>
+                            value={values.description}
+                            className={`${styles["input-field"]} ${(errors.description && touched.description) && errors.description? styles.validationError : ""}`}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            />   
+                            <p className={styles["input-mandatory"]}>{(errors.description && touched.description) && errors.description}</p>
                     </div>
                     <InputField 
                             placeholder="Enter location"
                             name="location"
                             type="text"
-                            value={inputValue.location}
+                            value={values.location}
                             label="Location*"
-                            onChange={changeHandler}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors.email}
+                            touched={touched.email}
                     />
                     <button className={styles["post-btn"]}>Post</button>
-                    </form>
+                    </Form>)}
+                    </Formik>
                 </Card>   
             </>
 

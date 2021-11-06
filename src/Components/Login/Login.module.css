@@ -14,8 +14,9 @@ form{
     cursor: pointer;
     font-weight: bold;
     position: absolute;
-    top: 32%;
+    top: 40%;
     right: 0rem;
+    z-index: 10;
 }
 .login-btn{
     margin:2rem auto;
