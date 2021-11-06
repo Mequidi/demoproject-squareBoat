@@ -27,7 +27,7 @@ const Signup = () =>{
             .required("The field is mandatory."), 
         confirmPassword : Yup.string()
             .required("The field is mandatory."), 
-        skills:Yup.string()
+        skills: isCandidate && Yup.string()
             .required("The field is mandatory."), 
     });
     
@@ -114,7 +114,7 @@ const Signup = () =>{
                                 placeholder="Enter comma separated skills"
                                 name="skills"
                                 type="text"
-                                value={values.skills}
+                                value={values.skills?values.skills:""}
                                 label="Skills"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
