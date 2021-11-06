@@ -1,4 +1,3 @@
-import { useState } from "react/cjs/react.development"
 import styles from "./ForgotPassword.module.css"
 import Card from "../UI Component/Card"
 import InputField from "../UI Component/InputField"

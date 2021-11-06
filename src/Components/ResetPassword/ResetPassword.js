@@ -12,14 +12,16 @@ const ResetPassword = () =>{
 
     const Schema = Yup.object().shape({
         password: Yup.string()        
-           .required("The field is mandatory.").nullable(),
-           confirmPassword: Yup.string()
+           .required("The field is mandatory."),
+        confirmPassword: Yup.string()
          .required("The field is mandatory."),
     });
 
     const submitHandler = (values) =>{
-        let finalData = {password:values.newPassword,confirmPassword:values.confirmNewPassword,token:localStorage.getItem("jwt")}
+        console.log(values)
+        let finalData = {password:values.password,confirmPassword:values.confirmPassword,token:localStorage.getItem("jwt")}
         changePassword(finalData);
+        console.log("reset password payload:",finalData)
         history.push("/Login")
     }
 
@@ -55,8 +57,8 @@ const ResetPassword = () =>{
                 label="Confirm new password"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                errors={errors.password}
-                touched={touched.password}
+                errors={errors.confirmPassword}
+                touched={touched.confirmPassword}
             />
             <button className={styles["submit-btn"]} type="submit">Reset</button>
         </Form>)}

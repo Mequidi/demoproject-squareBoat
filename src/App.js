@@ -9,32 +9,19 @@ import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import { useState,useEffect } from 'react';
 import AvailableJobs from './Components/AvailableJobs/AvailableJobs';
-// import { useHistory } from "react-router-dom"
 import PostJob from './Components/PostJob/PostJob';
 
 function App() {
 
-  // const history = useHistory();
   const [isLoggedIn,setIsLoggedIn] = useState(false);
-  const [ currentURL, setCurrentURL ] = useState(window.location.pathname);
     
     useEffect(()=>{
-        if(currentURL!==window.location.pathname)
-        {
-            setCurrentURL(window.location.pathname);
-            console.log("run")
-        }      
-    })
-    console.log(window.location.pathname)
-    console.log(currentURL)
-    
-    // useEffect(()=>{
-    //   const item = localStorage.getItem("jwt");
-    //     if(item)
-    //       setIsLoggedIn(true);
-    //     else  
-    //       setIsLoggedIn(false);
-    // },[])
+      const item = localStorage.getItem("jwt");
+        if(item)
+          setIsLoggedIn(true);
+        else  
+          setIsLoggedIn(false);
+    },[])
 
     const login = () =>{
         setIsLoggedIn(()=>true)
@@ -43,12 +30,11 @@ function App() {
     const logout = () =>{
       localStorage.clear();
       setIsLoggedIn(()=>false);
-      // history.push("/");
     }
 
   return (
       <Router>
-        <Background currentURL={currentURL}/>
+        <Background />
         <Header isLoggedIn={isLoggedIn} onLogout={logout}/>
         <main>
           <Switch>

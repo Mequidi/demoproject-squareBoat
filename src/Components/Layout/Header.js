@@ -1,11 +1,17 @@
 import classes from "./Header.module.css";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
+import { useState,useEffect } from 'react'
 
 const Header = (props) =>{
 
+    const [ currentURL, setCurrentURL ] = useState(window.location.pathname);
+    let location = useLocation();
+    useEffect(() => {
+        setCurrentURL(location.pathname);
+    }, [location]);
     const style = {textDecoration:"none"}
 
-    const beforeLogIn = <div className={classes["btn-container"]}>
+    const beforeLogIn = currentURL==="/" && <div className={classes["btn-container"]}>
                 <button>
                     <Link style={style} to="/Login"><span>Login</span></Link>
                     /<Link style={style} to="/Signup"><span>Signup</span></Link>

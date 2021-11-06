@@ -14,7 +14,9 @@ export const register = (data) =>{
         // localStorage.setItem(TOKEN_KEY, response.data.token)
         console.log(response)
     })
-    .catch(err=>console.log("something went wrong",err))
+    .catch(err=>{
+        alert(err)
+        console.log("something went wrong",err)})
 }
 
 export const login = (data,func)=>{
@@ -32,7 +34,9 @@ export const login = (data,func)=>{
         func();
         console.log(response);
     })
-    .catch(err=>console.log("something went wrong",err))
+    .catch(err=>{
+        alert(err)
+        console.log("something went wrong",err)})
 }
 
 export const getToken = (data,func) =>{
@@ -43,7 +47,9 @@ export const getToken = (data,func) =>{
         func();
         checkToken(response.data.token);
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        alert(err)
+        console.log(err)})
 }
 
 export const checkToken = (data) =>{
@@ -52,7 +58,9 @@ export const checkToken = (data) =>{
     .then(response=>{
         console.log(response.message);
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        alert(err)
+        console.log(err)})
 }
 
 export const changePassword = (data) =>{
@@ -67,10 +75,14 @@ export const changePassword = (data) =>{
     .then(response=>{
         console.log(response.message)
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        alert(err)
+        console.log(err);
+        localStorage.clear();
+    })
 }
 
-export const createJob = (data) =>{
+export const createJob = (data,func) =>{
     fetch(BASE_URL+"jobs/", {
         method: "POST",
         body: JSON.stringify({"title": data.title,
@@ -84,8 +96,11 @@ export const createJob = (data) =>{
     .then(resp=>resp.json())
     .then(response=>{
         console.log(response.success?"success":"failure");
+        func();
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        alert(err)
+        console.log(err)})
 }
 
 export const getPostedJobs=()=>{
@@ -104,7 +119,9 @@ export const getPostedJobs=()=>{
         })
         return dataRecieved
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        alert(err)
+        console.log(err)})
     return dataRecieve;
 }
 export const getJobCandidates=(data)=>{
@@ -124,7 +141,9 @@ export const getJobCandidates=(data)=>{
         console.log(dataRecieved)
         return dataRecieved
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        alert(err)
+        console.log(err)})
     return dataRecieve;
 }
 

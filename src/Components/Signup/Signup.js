@@ -13,13 +13,14 @@ const Signup = () =>{
 
     const submitHandler = (values)=>{
         const finalData = {...values,userRole:isCandidate?1:0}
+        console.log(finalData)
         register(finalData);
         history.push('/Login')
     }
     const Schema = Yup.object().shape({
         email: Yup.string()        
             .email('Invalid email address.')
-           .required("The field is mandatory.").nullable(),
+            .required("The field is mandatory.").nullable(),
         password: Yup.string()
             .required("The field is mandatory."),  
         name : Yup.string()
@@ -54,6 +55,7 @@ const Signup = () =>{
 						}}
 						validationSchema={Schema}
 						onSubmit={(values)=>submitHandler(values)}
+                        // onSubmit={()=>{console.log("submit btn")}}
 					>
 					{({ values, errors, touched, handleChange, handleBlur }) => (
                         <Form>

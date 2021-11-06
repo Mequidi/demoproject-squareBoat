@@ -1,6 +1,13 @@
-// import { useState,useEffect } from "react";
+import { useState,useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-const Background = ({currentURL}) =>{
+const Background = () =>{
+
+    const [ currentURL, setCurrentURL ] = useState(window.location.pathname);
+    let location = useLocation();
+    useEffect(() => {
+        setCurrentURL(location.pathname);
+    }, [location]);
 
     let bgCoverClass="";
     switch (currentURL) {

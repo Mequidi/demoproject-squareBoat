@@ -1,7 +1,6 @@
 import Card from '../UI Component/Card'
 import styles from './PostJob.module.css'
 import InputField from '../UI Component/InputField'
-import { useState } from 'react';
 import { createJob } from '../../Utilites/Api';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
@@ -22,8 +21,10 @@ const PostJob = () =>{
     });
     
     const submitHandler = (values) =>{
-        createJob({title:values.jobTitle,description:values.description,location:values.location,token:localStorage.getItem("jwt")});
-        history.push("/AvailableJobs");
+        createJob({title:values.title,description:values.description,location:values.location,token:localStorage.getItem("jwt")},()=>{
+            history.push("/AvailableJobs");
+        });
+        
     }
 
     return <>
@@ -45,14 +46,14 @@ const PostJob = () =>{
 						<Form>
                     <InputField 
                         placeholder="Enter job title"
-                        name="jobTitle"
+                        name="title"
                         type="text"
                         value={values.title}
                         label="Job title*"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        errors={errors.email}
-                        touched={touched.email}
+                        errors={errors.title}
+                        touched={touched.title}
                     />
                     <div className={styles["input"]}>
                         <label>{"Description*"}</label>
@@ -75,8 +76,8 @@ const PostJob = () =>{
                             label="Location*"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            errors={errors.email}
-                            touched={touched.email}
+                            errors={errors.location}
+                            touched={touched.location}
                     />
                     <button className={styles["post-btn"]}>Post</button>
                     </Form>)}

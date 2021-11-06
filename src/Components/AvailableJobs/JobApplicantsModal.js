@@ -22,6 +22,7 @@ const JobApplicantsModal = (props) =>{
         getJobCandidates({id:props.id,token:localStorage.getItem("jwt")})
         .then((result)=>{
             setJobApplicants(result)
+            console.log(result)
         })
     },[props])
 
@@ -37,9 +38,9 @@ const JobApplicantsModal = (props) =>{
         <div className={styles["grey-background"]}>
             {jobApplicants?.length>0?
                 <ul className={styles["applicants-list"]}>{jobApplicants.map(item=>{
-                    return(<li>
+                    return(<li key={item.id}>
                             <div className={styles["basic-info-container"]}>
-                                <div className={styles.logo}><span>L</span></div>
+                                <div className={styles.logo}><span>{item.name[0].toUpperCase()}</span></div>
                                 <div className={styles.info}>
                                     <p className={styles.name}>{item.name}</p>
                                     <p className={styles.email}>{item.email}</p>
