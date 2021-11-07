@@ -6,6 +6,8 @@ import { Link, useHistory } from "react-router-dom"
 import { register } from "../../Utilites/Api"
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { MdPersonSearch } from 'react-icons/md'
+import { HiUserGroup } from 'react-icons/hi'
 
 const Signup = () =>{
     const history = useHistory()
@@ -40,10 +42,10 @@ const Signup = () =>{
             <p className={styles.label}>I’m a*</p>
             <button onClick={()=>{
                 setIsCandidate(false)
-            }}className={recruiterStyle}>Recruiter</button>
+            }}className={recruiterStyle}> <MdPersonSearch className={styles.icon}/><span>Recruiter</span></button>
             <button onClick={()=>{
                 setIsCandidate(true)
-            }} className={candidateStyle}>Candidate</button>
+            }} className={candidateStyle}><HiUserGroup className={styles.icon}/><span>Candidate</span></button>
         </div>
         <Formik 
 						initialValues={{

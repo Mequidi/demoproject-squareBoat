@@ -60,6 +60,10 @@ header{
 
 .after-btn-container{
     margin: 0px 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 .post-a-job{
     background-color: transparent;
@@ -69,10 +73,39 @@ header{
     color: rgba(255, 255, 255, 0.8);
     font-size: 1rem;
 }
-.logout{
+.logout-container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo_triangle{
+    display: flex;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #D9EFFF;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+.icon{
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+.logout_btn{
     background-color: white;
     color: #303F60;
     width: 100px;
     text-align: left;
-    padding: 0.5rem;
+    padding: 0.8rem;
+    position: absolute;
+    top:110%;
+    right: 70px;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 0.8rem;
 }

@@ -31,6 +31,7 @@ export const login = (data,func)=>{
     .then(response=>{
         localStorage.setItem(TOKEN_KEY,response.data.token);
         localStorage.setItem("USER_ROLE",response.data.userRole);
+        localStorage.setItem("USER_NAME",response.data.name)
         func();
         console.log(response);
     })
@@ -115,7 +116,7 @@ export const getPostedJobs=()=>{
         console.log(response.success?"success":"failed");
         console.log(response);
             let dataRecieved = response.data?.data?.map(item=>{
-            return {id:item.id,title:item.title,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…",location:item.location}
+            return {id:item.id,title:item.title,description:item.description,location:item.location}
         })
         return dataRecieved
     })

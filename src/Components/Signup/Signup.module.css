@@ -19,6 +19,12 @@
     height: 46px;
     width: 136px;
     font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.type-btn span{
+    margin-left: 0.6rem;
 }
 .active{
     background-color: #43AFFF;
@@ -54,4 +60,11 @@
 }
 .login-txt{
     text-align: center;
+}
+.icon{
+    font-size: 25px;
+    color:#43AFFF
+}
+.active .icon{
+    color: white!important;
 }

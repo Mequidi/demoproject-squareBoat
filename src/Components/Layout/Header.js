@@ -1,6 +1,7 @@
 import classes from "./Header.module.css";
 import { Link,useLocation } from "react-router-dom";
-import { useState,useEffect } from 'react'
+import { useState,useEffect } from 'react';
+import { VscTriangleDown } from "react-icons/vsc";
 
 const Header = (props) =>{
 
@@ -9,9 +10,10 @@ const Header = (props) =>{
     useEffect(() => {
         setCurrentURL(location.pathname);
     }, [location]);
-    const style = {textDecoration:"none"}
+    const style = {textDecoration:"none"};
+    const [ showLogout, setShowLogout] = useState(false);
 
-    const beforeLogIn = currentURL==="/" && <div className={classes["btn-container"]}>
+    const beforeLogIn = (currentURL==="/"||currentURL==="/ForgotPassword"||currentURL==="/ResetPassword")&& <div className={classes["btn-container"]}>
                 <button>
                     <Link style={style} to="/Login"><span>Login</span></Link>
                     /<Link style={style} to="/Signup"><span>Signup</span></Link>
@@ -19,7 +21,17 @@ const Header = (props) =>{
             </div>;
     const afterLogIn = <div className={classes["after-btn-container"]}>
             <Link style={style} to="/PostJobs"><button className={classes["post-a-job"]}>Post a Job</button></Link>
-            <Link style={style} onClick={props.onLogout} to="/"><button className={classes["logout"]} >Logout</button></Link>
+                {/* <button className={classes["logout"]} >Logout</button> */}
+                <div className={classes["logout-container"]}>
+                    <div className={classes.logo_triangle}><span>{localStorage.getItem("USER_NAME")?.toUpperCase()[0]}</span></div>
+                    <VscTriangleDown className={classes.icon} onClick={()=>{
+                        setShowLogout((prev)=> !prev);
+                    }}/>
+                    <Link style={style} onClick={props.onLogout} to="/">
+                    {showLogout && <div className={classes.logout_btn}>Logout</div>}
+                    </Link>
+                </div>
+            
         </div>
         
 

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { AiFillHome } from "react-icons/ai"
+
 
 const PostJob = () =>{
 
@@ -29,7 +31,7 @@ const PostJob = () =>{
 
     return <>
             <p className={styles["navigation"]}>  
-                <Link style={{textDecoration:"none",color:"white"}} to="/AvailableJobs"><span> Home </span></Link>
+                <Link style={{textDecoration:"none",color:"white"}} to="/AvailableJobs"><AiFillHome/><span> Home </span></Link>
                 {window.location.pathname==="/PostJobs" &&  <Link style={{textDecoration:"none",color:"white"}} to="/PostJobs">{" > "}<span> Post a job </span></Link>}
             </p>
             <Card>

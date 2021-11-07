@@ -71,6 +71,7 @@ main{
   top:10vh;
   margin: auto;
   font-weight: bold;
+  padding-bottom: 4rem;
 }
 .paginationBtns li{
   margin-right: 10px;
