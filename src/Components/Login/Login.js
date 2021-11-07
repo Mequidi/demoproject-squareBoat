@@ -4,7 +4,7 @@ import styles from "./Login.module.css"
 import { Link,useHistory } from "react-router-dom";
 import { login } from "../../Utilites/Api";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import * as Yup from "yup"; 
 
 const Login = (props) =>{
     const history = useHistory();

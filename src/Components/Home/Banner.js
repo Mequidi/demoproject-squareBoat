@@ -12,6 +12,6 @@ const Banner = ({isLoggedIn}) => {
             <img src={bannerImg} alt=""/>
         </div>
     </div>
-}
+} 
 
 export default Banner;

@@ -13,13 +13,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
-
 .list-item{
     max-width: 340px;
     height: 190px;
     background-color: white;
     padding: 24px 20px;
+    margin: 0 0.5rem;
 }
 .list-item h2{
     display: block;
@@ -32,4 +33,13 @@
     color: #303F60;
     display: block;
     margin-bottom: 24px;
+}
+@media (max-width:1410px)
+{
+    .card-list{
+        flex-direction: column;
+    } 
+    .card-list li{
+        margin-bottom: 1rem;
+    }
 }

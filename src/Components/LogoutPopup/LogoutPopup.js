@@ -1,4 +1,5 @@
 import { ImCross } from "react-icons/im"
+import styles from "./LogoutPopup.module.css"
 
 const LogoutPopup = ({onLogout}) =>{
     return <div className={"logout_popup"}>
@@ -6,6 +7,6 @@ const LogoutPopup = ({onLogout}) =>{
         <p>You have successfully logged out.</p>
         <ImCross onClick={onLogout}/>
     </div>
-}
+} 
 
 export default LogoutPopup;

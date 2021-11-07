@@ -1,26 +1,23 @@
 .banner{
-    height: 394px;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
-
 .banner-content-container{
-    width: 334px;
     height: 100%;
 }
 .banner-heading{
     font-size: 60px;
     color: white;
-    margin-top: 90px;
-    margin-bottom: 60px;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
     font-weight: normal;
 }
 .banner-heading span{
     font-weight: bold;
 }
 .banner-btn{
-    height: 46px;
+    height: 3rem;
     width: 150px;
     font-size: 1rem;
     color: white;
@@ -47,4 +44,37 @@
     top: 15%;
     border-radius: 20px;
     box-shadow: 0px 30px 36px rgba(85, 125, 165, 0.15);
+}
+
+@media (max-width:1024px){
+    .banner{
+        flex-wrap: wrap;
+    } 
+    .banner-heading{
+        font-size: 50px;
+        color: white;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+    }
+    .banner-content-container{
+        height:fit-content;
+        margin-bottom: 2rem;
+    }
+    .banner-img-container{
+        position: static;
+        height: fit-content;
+        width:fit-content;
+    }
+    .banner-img-container img{
+        position: static;
+        width: 400px;
+    } 
+}
+@media (max-width:550px){
+    .banner-img-container {
+        width: 100%;
+    }
+    .banner-img-container img{
+        width: 100%;
+    }
 }

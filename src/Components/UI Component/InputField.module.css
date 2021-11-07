@@ -12,7 +12,7 @@
 }
 label{
     color: #303F60;
-    font-size: 14px;
+    font-size: 14px; 
 }
 .validationError{
   border: 1px solid #FF333380!important;
@@ -23,4 +23,12 @@ label{
   position: absolute;
   top: 100%;
   left: 75%;
+}
+.error-styles{
+  left:49%;
+}
+@media(max-width:750px){
+  .input-mandatory{
+    left: 0;
+  }
 }

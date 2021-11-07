@@ -16,7 +16,7 @@ const About = () => {
             title={card.title}
             secondaryTitle={card.secondaryTitle}
             description={card.description}
-        />)}</ul>
+        />)}</ul> 
     </div>
 }
 

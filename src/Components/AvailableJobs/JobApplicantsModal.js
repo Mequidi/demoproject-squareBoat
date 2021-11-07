@@ -16,8 +16,7 @@ const JobApplicantsModal = (props) =>{
     },[props])
 
     return <div>
-        <div className={styles["overlay"]}></div>
-        <Card className={styles["job-applicant-card"]}>
+        <div className={styles["overlay"]}><Card className={styles["job-applicant-card"]}>
         
         <div className={styles["heading-container"]}>
             <h2 className={styles["heading"]}>Applicants for this job</h2>
@@ -50,7 +49,8 @@ const JobApplicantsModal = (props) =>{
                 </div>
             }
         </div>
-    </Card>
+    </Card></div>
+        
     </div>
 }
 

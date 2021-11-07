@@ -9,7 +9,7 @@ const Background = () =>{
         setCurrentURL(location.pathname);
     }, [location]);
 
-    let bgCoverClass="";
+    let bgCoverClass=""; 
     switch (currentURL) {
         case "/":
             bgCoverClass="bg-large";

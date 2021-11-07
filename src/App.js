@@ -40,6 +40,10 @@ function App() {
     setIsLogoutClicked((prev)=>{
       return !prev;
     });
+    setTimeout(() => {
+      setIsLogoutClicked(false)
+  }, 5000);
+    
   }
 
   return (

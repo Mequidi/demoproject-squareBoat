@@ -39,6 +39,7 @@
 .half-input >*{
     margin-top: 0;
     flex-grow: 1;
+    margin-bottom: 1rem;
 }
 .signup-btn{
     display: block;
@@ -67,4 +68,14 @@
 }
 .active .icon{
     color: white!important;
+}
+@media (max-width:530px) {
+    .btn-container button{
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+@media(max-width:750px)
+{
+
 }

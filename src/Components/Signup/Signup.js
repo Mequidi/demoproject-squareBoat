@@ -50,14 +50,13 @@ const Signup = () =>{
         <Formik 
 						initialValues={{
 							email: "",
-							name: "",
+							name: "", 
                             password:"",
                             confirmPassword:"",
                             skills:""
 						}}
 						validationSchema={Schema}
 						onSubmit={(values)=>submitHandler(values)}
-                        // onSubmit={()=>{console.log("submit btn")}}
 					>
 					{({ values, errors, touched, handleChange, handleBlur }) => (
                         <Form>
@@ -86,43 +85,43 @@ const Signup = () =>{
                             />
                             <div className={styles["half-input"]}>
                                 <InputField 
-                                placeholder="Enter Your password"
-                                name="password"
-                                type="password"
-                                value={values.password}
-                                label="Create Password*"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                errors={errors.password}
-                                touched={touched.password}
-                                isHalfInput={true}
-                            />
-                            <div style={{width:"1rem",flexGrow:"0"}}></div>
-                            <InputField 
-                                placeholder="Enter Your Password"
-                                name="confirmPassword"
-                                type="password"
-                                value={values.confirmPassword}
-                                label="Confirm Password"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                errors={errors.confirmPassword}
-                                touched={touched.confirmPassword}
-                                isHalfInput={true}
-                            />
+                                    placeholder="Enter Your password"
+                                    name="password"
+                                    type="password"
+                                    value={values.password}
+                                    label="Create Password*"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    errors={errors.password}
+                                    touched={touched.password}
+                                    isHalfInput={true}
+                                />
+                                <div style={{width:"1rem",flexGrow:"0"}}></div>
+                                <InputField 
+                                    placeholder="Enter Your Password"
+                                    name="confirmPassword"
+                                    type="password"
+                                    value={values.confirmPassword}
+                                    label="Confirm Password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    errors={errors.confirmPassword}
+                                    touched={touched.confirmPassword}
+                                    isHalfInput={true}
+                                />
                             </div>
-                            {isCandidate && <InputField
+                             <InputField
                                 style={{marginTop:"0"}} 
                                 placeholder="Enter comma separated skills"
                                 name="skills"
                                 type="text"
-                                value={values.skills?values.skills:""}
+                                value={values.skills}
                                 label="Skills"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 errors={errors.skills}
                                 touched={touched.skills}
-                            />}
+                            />
                             <button type="submit" className={styles["signup-btn"]}>Signup</button>
                         </Form>)}
                     </Formik>

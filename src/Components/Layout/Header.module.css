@@ -1,18 +1,20 @@
 header{
-    height: 70px;
+    height: 4.5rem;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 .navigation{
-    height: 100%;
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    border-bottom: 1px solid rgba(77, 97, 142, 1);
 }
 .logo-container{
     height: 26px;
     width: 82px;
-    margin: 0px 70px;
     font-size: 22px;
     font-weight: bold;
     color: white; 
@@ -24,7 +26,6 @@ header{
 .btn-container{
     width: 148px;
     height: 46px;
-    margin: 0px 70px;
 }
 .btn-container button{
     font-size: 1rem;
@@ -59,7 +60,6 @@ header{
 }
 
 .after-btn-container{
-    margin: 0px 70px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

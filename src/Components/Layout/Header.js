@@ -21,7 +21,6 @@ const Header = (props) =>{
             </div>;
     const afterLogIn = <div className={classes["after-btn-container"]}>
             <Link style={style} to="/PostJobs"><button className={classes["post-a-job"]}>Post a Job</button></Link>
-                {/* <button className={classes["logout"]} >Logout</button> */}
                 <div className={classes["logout-container"]}>
                     <div className={classes.logo_triangle}><span>{localStorage.getItem("USER_NAME")?.toUpperCase()[0]}</span></div>
                     <VscTriangleDown className={classes.icon} onClick={()=>{
@@ -45,7 +44,7 @@ const Header = (props) =>{
                 </div>
             </Link>
             {!props.isLoggedIn ? beforeLogIn:afterLogIn}
-            <div className={classes.underline}></div>
+            {/* <div className={classes.underline}></div> */}
         </div>
     </header>
 }
