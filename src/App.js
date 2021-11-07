@@ -35,15 +35,15 @@ function App() {
       setIsLoggedIn(()=>false);
       setIsLogoutClicked(true);
     }
+    setTimeout(() => {
+      setIsLogoutClicked(false);
+      console.log("5 sec")
+    }, 5000);
   
   const logoutHandler = () =>{
     setIsLogoutClicked((prev)=>{
       return !prev;
     });
-    setTimeout(() => {
-      setIsLogoutClicked(false)
-  }, 5000);
-    
   }
 
   return (
