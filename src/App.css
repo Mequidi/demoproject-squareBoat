@@ -108,3 +108,12 @@ main{
   background-color: transparent;
   border: 1px solid rgba(48, 63, 96, 0.3);
 }
+
+.logout_pop{
+  background: #fff;
+  padding: 1rem 2rem;
+  width: fit-content;
+  position: absolute;
+  right: 70px;
+  top: 12%;
+}

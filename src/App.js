@@ -10,10 +10,12 @@ import ResetPassword from './Components/ResetPassword/ResetPassword';
 import { useState,useEffect } from 'react';
 import AvailableJobs from './Components/AvailableJobs/AvailableJobs';
 import PostJob from './Components/PostJob/PostJob';
+import LogoutPopup from './Components/LogoutPopup/LogoutPopup';
 
 function App() {
 
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [ logoutClicked, setIsLogoutClicked ] = useState(false);
     
     useEffect(()=>{
       const item = localStorage.getItem("jwt");
@@ -21,6 +23,7 @@ function App() {
           setIsLoggedIn(true);
         else  
           setIsLoggedIn(false);
+      
     },[])
 
     const login = () =>{
@@ -30,7 +33,14 @@ function App() {
     const logout = () =>{
       localStorage.clear();
       setIsLoggedIn(()=>false);
+      setIsLogoutClicked(true);
     }
+  
+  const logoutHandler = () =>{
+    setIsLogoutClicked((prev)=>{
+      return !prev;
+    });
+  }
 
   return (
       <Router>
@@ -49,6 +59,7 @@ function App() {
             <Route path="/PostJobs" component={PostJob}/>
           </Switch>
         </main>
+        {logoutClicked &&<LogoutPopup onLogout={logoutHandler}/>}
       </Router>
   );
 }

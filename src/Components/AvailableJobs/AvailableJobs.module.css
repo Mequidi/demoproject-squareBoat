@@ -68,7 +68,7 @@
 }
 .no-post h2{
     font-size: 20px;
-    color: #303f60;
+    color: rgba(48, 63, 96, 0.8);
     margin-bottom: 1.5rem;
 }
 .no-post button{

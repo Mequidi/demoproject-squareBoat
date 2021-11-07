@@ -27,7 +27,9 @@ const Header = (props) =>{
                     <VscTriangleDown className={classes.icon} onClick={()=>{
                         setShowLogout((prev)=> !prev);
                     }}/>
-                    <Link style={style} onClick={props.onLogout} to="/">
+                    <Link style={style} onClick={()=>{
+                        props.onLogout();
+                    }} to="/">
                     {showLogout && <div className={classes.logout_btn}>Logout</div>}
                     </Link>
                 </div>

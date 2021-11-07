@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { AiFillHome } from "react-icons/ai"
 import { MdLocationPin } from "react-icons/md"
+import { BsPencilSquare } from "react-icons/bs"
 
 const AvailableJobs = () =>{
 
@@ -63,7 +64,7 @@ const AvailableJobs = () =>{
         </ul>:
         <div className={styles["no-post"]}> 
             <div>
-                <i className={styles.icon_logo}>LOGO</i>
+                <BsPencilSquare style={{fontSize: "5rem",marginBottom: "1rem",color:"rgb(48, 63, 96,0.5)"}}/>
                 <h2>Your posted jobs will show here!</h2>
                 <Link style={{textDecoration:"none"}} to="/PostJobs"><button>Post a Job</button></Link>
             </div>  
