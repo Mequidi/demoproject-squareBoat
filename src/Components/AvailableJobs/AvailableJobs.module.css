@@ -25,13 +25,20 @@
 }
 .list-item h3{
     font-size: 17px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-transform: capitalize;
     font-weight: 500;
 }
 .list-description{
     height: 4rem;
     color: rgb(48, 63, 96, 0.8);
+    overflow: hidden;
+	text-overflow: ellipsis;
+	/* display: -webkit-box; */
+	-webkit-line-clamp: 3; /* number of lines to show */
+    line-clamp: 3;
+	-webkit-box-orient: vertical;
+    margin-bottom: 0.5rem;
 }
 .list-item .container{
     display: flex;

@@ -43,6 +43,10 @@ const Login = (props) =>{
                                 value={values.email}
                                 label="Email Address"
                                 onChange={handleChange}
+                                onFocusIn={()=>{
+                                    console.log("focused");
+                                }}
+                                onFocus
                                 onBlur={handleBlur}
                                 errors={errors.email}
                                 touched={touched.email}
